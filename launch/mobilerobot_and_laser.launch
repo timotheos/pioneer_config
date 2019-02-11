@@ -1,0 +1,35 @@
+<launch>
+  
+  <!-- Pioneer3AT -->
+  <node pkg="rosaria" type="RosAria" name="RosAria">
+    <param name="odom_frame" value="rosaria" />
+  </node>
+  
+  <!-- Hokuyo YVT-35LX -->
+  <node pkg="hokuyo3d" type="hokuyo3d" name="hokuyo3d"
+        respawn="true" respawn_delay="3" />
+  
+  <!-- Convert Voxel Map to PCL -->
+  <node pkg="octomap_server" type="octomap_server_node"
+    name="octomap_server_node">
+    <param name="resolution" value="0.05" />
+
+    <!-- fixed map frame (set to 'map' if SLAM or localization running!) -->
+    <param name="frame_id" type="string" value="map" />
+
+    <!-- maximum range to integrate (speedup!) -->
+    <param name="sensor_model/max_range" value="5.0" />
+
+    <!-- data source to integrate (PointCloud2) -->
+    <remap from="cloud_in" to="/hokuyo3d/hokuyo_cloud2" />
+  </node>
+
+  <!-- frame transform from base link to sensor link -->
+  <!--node pkg="tf2_ros" type="static_transform_publisher" 
+        name="hokuyo_broadcaster" args="1 0 0 0 0 0 1 base_link hokuyo3d" /-->
+
+  <remap from="/RosAria/pose" to="pose_rosaria" />
+  <remap from="hokuyo3d" to="imu_hokuyo3d"/>
+  <include file="$(find robot_localization)/launch/ekf_pioneer.launch" />
+
+</launch>

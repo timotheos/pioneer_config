@@ -1,0 +1,3 @@
+<launch>
+  <node pkg="rosaria" type="RosAria" name="RosAria" />>
+</launch>
