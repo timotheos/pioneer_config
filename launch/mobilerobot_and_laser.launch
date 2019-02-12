@@ -1,9 +1,7 @@
 <launch>
   
   <!-- Pioneer3AT -->
-  <node pkg="rosaria" type="RosAria" name="RosAria">
-    <param name="odom_frame" value="rosaria" />
-  </node>
+    <include file="$(find pioneer_config)/launch/pioneer_minimal.launch" />
   
   <!-- Hokuyo YVT-35LX -->
   <node pkg="hokuyo3d" type="hokuyo3d" name="hokuyo3d"
