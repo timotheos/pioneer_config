@@ -31,11 +31,11 @@
   <!--node pkg="tf2_ros" type="static_transform_publisher" 
         name="hokuyo_broadcaster" args="1 0 0 0 0 0 1 base_link hokuyo3d" /-->
 
-  <remap from="/RosAria/pose" to="pose_rosaria" />
+  <!-- <remap from="/RosAria/pose" to="pose_rosaria" /> -->
   <remap from="hokuyo3d" to="imu_hokuyo3d"/>
   <include file="$(find robot_localization)/launch/ekf_pioneer.launch" />
 
   <!-- Look-ahead Control -->
-  <node pkg="lookahead" type="executable" name="executable" />
+  <node pkg="lookahead_control " type="lookahead_control" name="lookahead_control" />
 
 </launch>
