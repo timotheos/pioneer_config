@@ -4,38 +4,43 @@
   <include file="$(find pioneer_config)/launch/pioneer_minimal.launch" />
   
   <!-- Hokuyo YVT-35LX -->
+  <!-- <node pkg="tf2_ros" type="static_transform_publisher"
+        name="hokuyo_to_base" args="0.135 0 0 0 0 0 1 base_link hokuyo3d" /> -->
+  <node pkg="tf2_ros" type="static_transform_publisher"
+        name="hokuyo_to_base" args="0.135 0 0 0 0 0 1 p3at_base hokuyo3d" />
+  
   <node pkg="hokuyo3d" type="hokuyo3d" name="hokuyo3d"
-        respawn="true" respawn_delay="3" />
+        respawn="true" respawn_delay="3">
+    <!-- <param name="frame_id" value="hokuyo3d"/> -->
+  </node>
+  
 
   <!-- Astra Pro -->
-  <include file="$(find pioneer_config)/launch/astrapro_config.launch">
-    
-  </include>
+  <!-- <include file="$(find astra_launch)/launch/astrapro.launch" /> -->
+  
   
   <!-- Convert Voxel Map to PCL -->
   <node pkg="octomap_server" type="octomap_server_node"
-    name="octomap_server_node">
+    name="octomap_server_node" respawn="true" respawn_delay="6">
     <param name="resolution" value="0.05" />
 
     <!-- fixed map frame (set to 'map' if SLAM or localization running!) -->
-    <param name="frame_id" type="string" value="map" />
+    <param name="frame_id" value="odom" />
+    
+    <!-- <param name="base_frame_id" value="pioneer_base"/> -->
 
     <!-- maximum range to integrate (speedup!) -->
     <param name="sensor_model/max_range" value="5.0" />
 
     <!-- data source to integrate (PointCloud2) -->
-    <remap from="cloud_in" to="/hokuyo3d/hokuyo_cloud2" />
+    <remap from="cloud_in" to="hokuyo3d/hokuyo_cloud2" />
   </node>
 
-  <!-- frame transform from base link to sensor link -->
-  <!--node pkg="tf2_ros" type="static_transform_publisher" 
-        name="hokuyo_broadcaster" args="1 0 0 0 0 0 1 base_link hokuyo3d" /-->
-
   <!-- <remap from="/RosAria/pose" to="pose_rosaria" /> -->
-  <remap from="hokuyo3d" to="imu_hokuyo3d"/>
+  <!-- <remap from="hokuyo3d" to="imu_hokuyo3d"/> -->
   <include file="$(find robot_localization)/launch/ekf_pioneer.launch" />
 
   <!-- Look-ahead Control -->
-  <node pkg="lookahead_control " type="lookahead_control" name="lookahead_control" />
+  <!-- <node pkg="lookahead_control " type="lookahead_control" name="lookahead_control" /> -->
 
 </launch>

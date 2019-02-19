@@ -11,6 +11,9 @@ find_package(catkin REQUIRED COMPONENTS
   roscpp
   rospy
   std_msgs
+  tf2
+  tf2_ros
+  nav_msgs
 )
 
 ## System dependencies are found with CMake's conventions
@@ -134,6 +137,11 @@ include_directories(
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
 # add_executable(${PROJECT_NAME}_node src/pioneer_config_node.cpp)
+add_executable(pioneer_tf src/pioneer_tf.cpp)
+target_link_libraries(pioneer_tf
+${catkin_LIBRARIES}
+)
+
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
