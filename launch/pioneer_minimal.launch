@@ -1,6 +1,9 @@
 <launch>
-  <remap from="RosAria/pose" to="odometry" />
-  <node pkg="rosaria" type="RosAria" name="RosAria" />
+  <!-- <remap from="RosAria/pose" to="odometry" /> -->
+  <node pkg="rosaria" type="RosAria" name="RosAria">
+    <param name="odom_frame" value="odometry"/>
+    <!-- <param name="TicksMM" value="50"/> -->
+    <param name="RevCount" value="32000"/>
+  </node>
   <node pkg="rosaria_client" type="teleop" name="teleop" />
-  
 </launch>
