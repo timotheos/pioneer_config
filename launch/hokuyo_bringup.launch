@@ -1,0 +1,10 @@
+<launch>
+  <node pkg="tf2_ros" type="static_transform_publisher"
+        name="hokuyo_to_base" args="0.135 0 0 0 0 0 1 base_link hokuyo3d" />
+  <!-- <node pkg="tf2_ros" type="static_transform_publisher"
+        name="hokuyo_to_base" args="0.135 0 0 0 0 0 1 p3at_base hokuyo3d" /> -->
+  <node pkg="hokuyo3d" type="hokuyo3d" name="hokuyo3d">
+        <!-- respawn="true" respawn_delay="3"> -->
+    <param name="frame_id" value="hokuyo3d"/>
+  </node>
+</launch>
