@@ -1,3 +1,3 @@
 <launch>
-  
+  <node pkg="usb_cam" type="executable" name="executable" />
 </launch>

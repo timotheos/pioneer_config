@@ -5,36 +5,25 @@
 
   <!-- Pioneer3AT -->
   <include file="$(find pioneer_config)/launch/pioneer_teleop.launch" />
-  
+  <include file="$(find robot_localization)/launch/ekf_pioneer.launch" />
+
   <!-- Hokuyo YVT-35LX -->
   <include file="$(find pioneer_config)/launch/hokuyo_bringup.launch" /> 
 
   <!-- Astra Pro -->
   <!-- <include file="$(find astra_launch)/launch/astrapro.launch" /> -->
   
-  
   <!-- Convert Voxel Map to PCL -->
-  <node pkg="octomap_server" type="octomap_server_node"
-    name="octomap_server_node" respawn="true" respawn_delay="6">
-    <param name="resolution" value="0.05" />
-
-    <!-- fixed map frame (set to 'map' if SLAM or localization running!) -->
-    <param name="frame_id" value="odom" />
-    
-    <!-- <param name="base_frame_id" value="pioneer_base"/> -->
-
-    <!-- maximum range to integrate (speedup!) -->
-    <param name="sensor_model/max_range" value="5.0" />
-
-    <!-- data source to integrate (PointCloud2) -->
-    <remap from="cloud_in" to="hokuyo3d/hokuyo_cloud2" />
-  </node>
-
+  <!-- <include file="$(find pioneer_config)/launch/hokuyo_octomap.launch"> -->
+   
   <!-- <remap from="/RosAria/pose" to="pose_rosaria" /> -->
   <!-- <remap from="hokuyo3d" to="imu_hokuyo3d"/> -->
   <!-- <include file="$(find robot_localization)/launch/ekf_pioneer.launch" /> -->
 
   <!-- Look-ahead Control -->
-  <!-- <node pkg="lookahead_control " type="lookahead_control" name="lookahead_control" /> -->
+  <node pkg="lookahead_control" type="lookahead_control" name="lookahead_control">
+    <remap from="lookahead_control/odom" to="RosAria/odom"/>
+    <remap from="lookahead_control/cmd_vel" to="RosAria/cmd_vel"/>
+  </node>
 
 </launch>

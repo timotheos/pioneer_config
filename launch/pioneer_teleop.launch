@@ -4,6 +4,7 @@
     <param name="odom_frame" value="odometry"/>
     <!-- <param name="TicksMM" value="50"/> -->
     <param name="RevCount" value="32000"/>
+    <param name="RosAria/pose" value="RoaAria/odom"/>
   </node>
   <node pkg="rosaria_client" type="teleop" name="teleop" />
 </launch>
