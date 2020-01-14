@@ -1,2 +1,4 @@
 <launch>
+  <include file="$(find pioneer_config)/launch/hokuyo_bringup.launch" />
+  <include file="$(find pioneer_config)/launch/zedm_bringup.launch" />
 </launch>

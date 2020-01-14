@@ -1,10 +1,6 @@
 <launch>
-  <!-- <remap from="RosAria/pose" to="odometry" /> -->
-  <node pkg="rosaria" type="RosAria" name="RosAria">
-    <param name="odom_frame" value="odometry"/>
-    <!-- <param name="TicksMM" value="50"/> -->
-    <param name="RevCount" value="32000"/>
-    <param name="RosAria/pose" value="RoaAria/odom"/>
+  <node pkg="teleop_twist_keyboard" type="teleop_twist_keyboard.py"
+        name="keyboard_teleop" output="screen">
+    <remap from="cmd_vel" to="RosAria/cmd_vel"/>
   </node>
-  <node pkg="rosaria_client" type="teleop" name="teleop" />
 </launch>
