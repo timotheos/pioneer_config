@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<launch>  
+  <!-- 1. Sensor and 2. mobile robot -->
+  <include file="$(find pioneer_config)/launch/pioneer_multisensor.launch" />
+  
+  <!-- 3. Mapper -->
+  <include file="$(find pioneer_config)/launch/icp_mapper.launch" />
+</launch>

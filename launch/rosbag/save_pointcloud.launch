@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<launch>
+  <arg name="pwd" default="/home/timothy/.ros/sim_map_"/>
+  <node pkg="pcl_ros" type="pointcloud_to_pcd" name="save_cloud"
+        args="input:=point_map _prefix:=$(arg pwd)" />
+</launch>

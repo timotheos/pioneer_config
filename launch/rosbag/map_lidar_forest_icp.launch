@@ -1,0 +1,36 @@
+<launch>
+  <param name="/use_sim_time"   value="true" />
+
+  <!-- sensor frames -->
+  <arg name="run_hokuyo_sensor" default="false"/>
+  <arg name="base_frame"        default="base_link"/>
+
+  <include file="$(find pioneer_config)/launch/hokuyo_bringup.launch">
+    <arg name="run_hokuyo_sensor" value="$(arg run_hokuyo_sensor)" />
+  </include>
+  <node pkg="rviz" type="rviz" name="rviz"
+        args="-d $(find pioneer_config)/launch/rviz/sim-pioneer-bb.rviz" />
+
+  <!-- icp mapper -->
+  <arg name="odom_icp_frame"       default="base_hokuyo3d"/>
+  <arg name="map_filename"         default="rosbag_map_forest.vtk"/>
+  <arg name="minReadingPointCount" default="300" /> 
+	<arg name="minMapPointCount"     default="10000" />
+
+  <include file="$(find pioneer_config)/launch/icp_mapper.launch">
+    <arg name="odom_frame"       value="$(arg odom_icp_frame)" />
+    <arg name="map_filename"     value="$(arg map_filename)" />
+    <arg name="minReadingPointCount" value="$(arg minReadingPointCount)" /> 
+		<arg name="minMapPointCount"     value="$(arg minMapPointCount)" /> 
+  </include>
+
+  <node name="stf_base_odom" pkg="tf" type="static_transform_publisher"
+        args="0 0 0 0 0 0 $(arg odom_icp_frame) $(arg base_frame) 100" />
+
+  <!-- rosbag data -->
+  <node pkg="rosbag" type="play" name="rosbag_hokuyo_forest"
+	args="/home/timothy/data/rosbag/2020-01-15-21-49-36.bag --clock --pause">
+      <!-- <remap from="tf" to="tf_old" /> -->
+  </node>
+
+</launch>
