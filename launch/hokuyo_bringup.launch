@@ -1,7 +1,7 @@
 <launch>
   <include file="$(find hokuyo3d)/launch/hokuyo3d_frames.launch" />
   <node pkg="tf2_ros" type="static_transform_publisher"
-        name="hokuyo3d_to_base" args="0.135 0 0 0 0 0 odom_hokuyo hokuyo3d_link" />
+        name="hokuyo3d_to_base" args="0.135 0 0 0 0 0 base_link hokuyo3d_link" />
   <node pkg="hokuyo3d" type="hokuyo3d" name="hokuyo3d"
         respawn="true" respawn_delay="3">
     <param name="frame_id" value="hokuyo3d"/>
