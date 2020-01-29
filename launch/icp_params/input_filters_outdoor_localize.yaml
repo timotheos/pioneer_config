@@ -8,7 +8,7 @@
     keepNormals: 1
     keepDensities: 1
 - MaxDensityDataPointsFilter:
-    maxDensity: 20.0
+    maxDensity: 23.0
 - SimpleSensorNoiseDataPointsFilter:
     sensorType: 0
 - ObservationDirectionDataPointsFilter

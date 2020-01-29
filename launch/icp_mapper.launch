@@ -10,7 +10,8 @@
 	<arg name="minMapPointCount"     default="10000" /> <!-- quick fix to have map published each time -->
 	<arg name="minOverlap"           default="0.55" /> 
 
-	<arg name="sensor_range" 				 default=""/>
+	<arg name="sensor_range"         default=""/>
+        <arg name="inputFiltersConfig"   default="$(find pioneer_config)/launch/icp_params/input_filters_outdoor_map.yaml" />
 
 
   <node name="mapper" type="dynamic_mapper" pkg="ethzasl_icp_mapper" output="screen" >
@@ -19,11 +20,11 @@
 		<param name="vtkFinalMapName" value="$(arg map_filename)"/>
 
 		<param name="icpConfig"              value="$(find pioneer_config)/launch/icp_params/icp_dynamic_outdoor.yaml" />
-		<param name="inputFiltersConfig"     value="$(find pioneer_config)/launch/icp_params/input_filters_outdoor.yaml" />
+		<param name="inputFiltersConfig"     value="$(arg inputFiltersConfig)" />
 		<param name="mapPostFiltersConfig"   value="$(find pioneer_config)/launch/icp_params/mapPost_filters_outdoor.yaml" />
 		
-    <param name="odom_frame" 				value="$(arg odom_frame)" />
-    <param name="map_frame"         value="/map" />
+    <param name="odom_frame"                       value="$(arg odom_frame)" />
+    <param name="map_frame"                        value="/map" />
 
 		<param name="useROSLogger"         value="true" />
 		<param name="inputQueueSize"       value="1" />
@@ -33,10 +34,10 @@
 		<param name="minReadingPointCount" value="$(arg minReadingPointCount)" /> 
 		<param name="minMapPointCount"     value="$(arg minMapPointCount)" /> <!-- quick fix to have map published each time -->
 
-		<param name="localizing" 					 value="$(arg run_localize)" /> 
-		<param name="mapping"   				   value="$(arg run_mapping)" /> 
+		<param name="localization"           value="$(arg run_localize)" /> 
+		<param name="mapping"                value="$(arg run_mapping)" /> 
 
-		<param name="sensorMaxRange"   		 value="$(arg sensor_range)" />
+		<param name="sensorMaxRange"         value="$(arg sensor_range)" />
 		
 
 		<!-- Parameters for dynamic elements -->

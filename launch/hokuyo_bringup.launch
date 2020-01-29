@@ -11,14 +11,14 @@
   <node name="stf_$(arg basename)_mag"   pkg="tf" type="static_transform_publisher" 
       args="0.01 0.0 0.0 -1.571 -1.571 1.571 $(arg basename)_link $(arg basename)_mag 100"/>
 
-  <node name="stf_$(arg basename)_to_$(arg base_frame)" pkg="tf" type="static_transform_publisher"
-        args="0.135 0.297 0 0 0 0 $(arg base_frame) $(arg basename)_link 100" />
+  <!-- <node name="stf_$(arg basename)_to_$(arg base_frame)" pkg="tf" type="static_transform_publisher"
+        args="0.135 0 0.297 0 0 0 $(arg base_frame) $(arg basename)_link 100" /> -->
         
   <group if="$(arg run_hokuyo_sensor)">
     <node pkg="hokuyo3d" type="hokuyo3d" name="hokuyo3d"
           respawn="true" respawn_delay="3">
-      <param name="interlace"    value=""/> <!-- default value="4"-->
-      <param name="frame_id"     value=""/> <!-- default value="hokuyo3d"-->
+      <param name="interlace"    value="4"/> <!-- default value="4"-->
+      <param name="frame_id"     value="hokuyo3d"/> <!-- default value="hokuyo3d"-->
       <param name="output_cycle" value="frame"/>
     </node>
   </group>

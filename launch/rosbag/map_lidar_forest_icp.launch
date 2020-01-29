@@ -15,13 +15,16 @@
   <arg name="odom_icp_frame"       default="base_hokuyo3d"/>
   <arg name="map_filename"         default="rosbag_map_forest.vtk"/>
   <arg name="minReadingPointCount" default="300" /> 
-	<arg name="minMapPointCount"     default="10000" />
+  <arg name="minMapPointCount"     default="10000" />
+  <arg name="inputFiltersConfig"   default="$(find pioneer_config)/launch/icp_params/input_filters_outdoor_map.yaml" />
 
   <include file="$(find pioneer_config)/launch/icp_mapper.launch">
     <arg name="odom_frame"       value="$(arg odom_icp_frame)" />
     <arg name="map_filename"     value="$(arg map_filename)" />
     <arg name="minReadingPointCount" value="$(arg minReadingPointCount)" /> 
-		<arg name="minMapPointCount"     value="$(arg minMapPointCount)" /> 
+    <arg name="minMapPointCount"     value="$(arg minMapPointCount)" /> 
+    <arg name="minMapPointCount"     value="$(arg minMapPointCount)" /> 
+    <arg name="inputFiltersConfig"   value="$(arg inputFiltersConfig)" />
   </include>
 
   <node name="stf_base_odom" pkg="tf" type="static_transform_publisher"
@@ -29,7 +32,8 @@
 
   <!-- rosbag data -->
   <node pkg="rosbag" type="play" name="rosbag_hokuyo_forest"
-	args="/home/timothy/data/rosbag/2020-01-15-21-49-36.bag --clock --pause">
+	args="/media/nvidia/3865-30311/rosbag/2020-01-15-21-49-36.bag --clock --pause">
+        <!-- args="/home/timothy/data/rosbag/2020-01-15-21-49-36.bag --clock --pause"> -->
       <!-- <remap from="tf" to="tf_old" /> -->
   </node>
 

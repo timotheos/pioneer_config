@@ -54,8 +54,12 @@
       
       <!-- mapping and tracking -->
       <param name="tracking/publish_tf"         value="true"/>
-      <param name="tracking/publish_map_tf"     value="true"/>
+      <param name="tracking/publish_map_tf"     value="false"/>
       <param name="mapping/mapping_enabled"     value="false"/>
+
+      <!-- frames -->
+      <param name="odom_frame"      value="odom_zed"/>
+      <param name="base_frame"      value="$(arg camera_model)_link"/>
 
     </node>
   </group>
