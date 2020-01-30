@@ -8,9 +8,9 @@
 
 	<arg name="minReadingPointCount" default="300" /> 
 	<arg name="minMapPointCount"     default="10000" /> <!-- quick fix to have map published each time -->
-	<arg name="minOverlap"           default="0.55" /> 
+	<arg name="minOverlap"           default="0.7" /> 
 
-	<arg name="sensor_range"         default=""/>
+	<arg name="sensor_range"         default="30"/>
         <arg name="inputFiltersConfig"   default="$(find pioneer_config)/launch/icp_params/input_filters_outdoor_map.yaml" />
 
 
@@ -23,8 +23,8 @@
 		<param name="inputFiltersConfig"     value="$(arg inputFiltersConfig)" />
 		<param name="mapPostFiltersConfig"   value="$(find pioneer_config)/launch/icp_params/mapPost_filters_outdoor.yaml" />
 		
-    <param name="odom_frame"                       value="$(arg odom_frame)" />
-    <param name="map_frame"                        value="/map" />
+                <param name="odom_frame"           value="$(arg odom_frame)" />
+                <param name="map_frame"            value="/map" />
 
 		<param name="useROSLogger"         value="true" />
 		<param name="inputQueueSize"       value="1" />

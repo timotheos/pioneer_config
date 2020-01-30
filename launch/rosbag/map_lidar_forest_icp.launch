@@ -23,7 +23,6 @@
     <arg name="map_filename"     value="$(arg map_filename)" />
     <arg name="minReadingPointCount" value="$(arg minReadingPointCount)" /> 
     <arg name="minMapPointCount"     value="$(arg minMapPointCount)" /> 
-    <arg name="minMapPointCount"     value="$(arg minMapPointCount)" /> 
     <arg name="inputFiltersConfig"   value="$(arg inputFiltersConfig)" />
   </include>
 
@@ -33,8 +32,6 @@
   <!-- rosbag data -->
   <node pkg="rosbag" type="play" name="rosbag_hokuyo_forest"
 	args="/media/nvidia/3865-30311/rosbag/2020-01-15-21-49-36.bag --clock --pause">
-        <!-- args="/home/timothy/data/rosbag/2020-01-15-21-49-36.bag --clock --pause"> -->
-      <!-- <remap from="tf" to="tf_old" /> -->
+        <!--  <remap from="tf" to="tf_old" /> -->
   </node>
-
 </launch>

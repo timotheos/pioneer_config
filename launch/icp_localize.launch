@@ -9,13 +9,13 @@
 	<arg name="minMapPointCount"     default="10000" />
 	<arg name="minOverlap"           default="0.35" /> 
 
-	<arg name="sensor_range" 				 default="15"/>
+	<arg name="sensor_range"         default="15"/>
 
   <include file="$(find pioneer_config)/launch/icp_mapper.launch">
-		<arg name="odom_frame"       		 value="$(arg odom_frame)"   />
-		<arg name="run_mapping"       	 value="$(arg run_mapping)"  />
-		<arg name="run_localize"  			 value="$(arg run_localize)" />
-		<arg name="map_filename"  			 value="$(arg map_filename)" />
+		<arg name="odom_frame"           value="$(arg odom_frame)"   />
+		<arg name="run_mapping"          value="$(arg run_mapping)"  />
+		<arg name="run_localize"         value="$(arg run_localize)" />
+		<arg name="map_filename"         value="$(arg map_filename)" />
 		<arg name="minReadingPointCount" value="$(arg minReadingPointCount)" /> 
 		<arg name="minMapPointCount"     value="$(arg minMapPointCount)" />	
 		<arg name="minOverlap"           value="$(arg minOverlap)" /> 

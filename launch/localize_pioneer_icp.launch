@@ -4,12 +4,8 @@
   <include file="$(find pioneer_config)/launch/pioneer_multisensor.launch" />
   
   <!-- 3. Mapper -->
-  <arg name="odom_frame" value="odom">
-  <include file="$(find pioneer_config)/launch/icp_mapper.launch">
-    <arg name="odom_frame" value="$(arg odom_frame)">
-  </include>
+  <include file="$(find pioneer_config)/launch/icp_localize.launch" />
 
-  <!-- 3. Mapper -->
+  <!-- 4. Robot Localization -->
   <include file="$(find pioneer_config)/launch/ekf_pioneer.launch" />
-
 </launch>
