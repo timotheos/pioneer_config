@@ -10,9 +10,24 @@
   <!-- ZED mini -->
   <include file="$(find pioneer_config)/launch/zedm_bringup.launch" /> -->
 
+  <!-- Robot State Publisher  -->
 
+  <!-- Load the urdf into the parameter server. -->
+  <!-- 
+   TODO:  
+  <param name="my_robot_description" textfile="$(find pioneer_config)/urdf/pioneer3at.xml"/>
+    
+  <node pkg="robot_state_publisher" type="robot_state_publisher" name="rob_st_pub" >
+    <remap from="robot_description" to="my_robot_description" />
+    <remap from="joint_states" to="different_joint_states" />
+  </node> -->
 
+  <arg name="base_frame"        default="base_link"/>
+
+  <node name="stf_$(arg basename)_to_hokuyo3d_link" pkg="tf" type="static_transform_publisher"
+        args="0.135 0 0.297 0 0 0 $(arg base_frame) hokuyo3d_link 100" />
+  <node name="stf_$(arg basename)_to_" pkg="tf" type="static_transform_publisher"
+        args="0.135 0 0.265 0 0 0 $(arg base_frame) zedm_link 100" />  
    
-  <!-- <remap from="/RosAria/pose" to="pose_rosaria" /> -->
 
 </launch>

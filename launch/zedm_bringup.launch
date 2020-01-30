@@ -53,7 +53,7 @@
       <param name="general/frame_rate" value="30"/>
       
       <!-- mapping and tracking -->
-      <param name="tracking/publish_tf"         value="true"/>
+      <param name="tracking/publish_tf"         value="false"/>
       <param name="tracking/publish_map_tf"     value="false"/>
       <param name="mapping/mapping_enabled"     value="false"/>
 
