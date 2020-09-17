@@ -80,7 +80,7 @@ odom0: /icp_odom
 # has no pose information, so the first six values would be meaningless in that case. Each vector defaults to all false
 # if unspecified, effectively making this parameter required for each sensor.
 odom0_config: [true,  true,  true,
-               true,  true,  true,
+               false, false, false,
                false, false, false,
                false, false, false,
                false, false, false]
@@ -119,7 +119,7 @@ odom0_nodelay: false
 # odom0_pose_rejection_threshold: 5
 # odom0_twist_rejection_threshold: 1
 
-imu0: example/imu
+imu0: /zedm/zed_node/imu/data
 imu0_config: [false, false, false,
               true,  true,  true,
               false, false, false,

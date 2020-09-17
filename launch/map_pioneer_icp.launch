@@ -4,7 +4,7 @@
   <include file="$(find pioneer_config)/launch/pioneer_multisensor.launch" />
   
   <!-- 3. Mapper -->
-  <arg name="odom_frame" default="odom" />
+  <arg name="odom_frame" default="base_link" />
   <include file="$(find pioneer_config)/launch/icp_mapper.launch">
     <arg name="odom_frame" value="$(arg odom_frame)" />
   </include>

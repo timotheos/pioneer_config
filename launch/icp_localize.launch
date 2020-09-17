@@ -10,6 +10,8 @@
 	<arg name="minOverlap"           default="0.35" /> 
 
 	<arg name="sensor_range"         default="15"/>
+	<arg name="inputFiltersConfig" default="$(find pioneer_config)/launch/icp_params/input_filters_outdoor_localize.yaml" />
+
 
   <include file="$(find pioneer_config)/launch/icp_mapper.launch">
 		<arg name="odom_frame"           value="$(arg odom_frame)"   />
@@ -19,7 +21,9 @@
 		<arg name="minReadingPointCount" value="$(arg minReadingPointCount)" /> 
 		<arg name="minMapPointCount"     value="$(arg minMapPointCount)" />	
 		<arg name="minOverlap"           value="$(arg minOverlap)" /> 
-
+		<arg name="inputFiltersConfig"   value="$(arg inputFiltersConfig)" />
+		
 	</include>
 	
 </launch>
+

@@ -1,9 +1,9 @@
 <launch>
   <node pkg="rosaria" type="RosAria" name="RosAria" respawn="true" respawn_delay="3">
-    <param name="odom_frame" value="odom_pioneer"/>
-    <param name="base_link_frame" value="base_pioneer"/>
-    <!-- <param name="TicksMM" value="50"/> -->
-    <param name="RevCount" value="32000"/>
+    <param name="odom_frame" value="base_footprint"/>
+    <param name="base_link_frame" value="base_link"/>
+    <param name="TicksMM" value="140"/> 
+    <param name="RevCount" value="33000"/> <!-- indoors 32000 -->
     <param name="RosAria/pose" value="RosAria/odom"/>
   </node>
 </launch>

@@ -8,8 +8,8 @@
   <include file="$(find pioneer_config)/launch/hokuyo_bringup.launch">
     <arg name="run_hokuyo_sensor" value="$(arg run_hokuyo_sensor)" />
   </include>
-  <node pkg="rviz" type="rviz" name="rviz"
-        args="-d $(find pioneer_config)/launch/rviz/sim-pioneer-bb.rviz" />
+  <!-- <node pkg="rviz" type="rviz" name="rviz"
+        args="-d $(find pioneer_config)/launch/rviz/sim-pioneer-bb.rviz" /> -->
 
   <!-- icp mapper -->
   <arg name="odom_icp_frame"       default="odom_pioneer"/>
@@ -17,9 +17,9 @@
   <arg name="map_filename"         default="rosbag_map_forest.vtk"/>
   <arg name="minReadingPointCount" default="300" /> 
   <arg name="minMapPointCount"     default="10000" />
-  <arg name="inputFiltersConfig"   default="$(find pioneer_config)/launch/icp_params/input_filters_outdoor_map.yaml" />
+  <arg name="inputFiltersConfig"   default="$(find pioneer_config)/launch/icp_params/input_filters_outdoor_localize.yaml" />
 
-  <include file="$(find pioneer_config)/launch/icp_mapper.launch">
+  <include file="$(find pioneer_config)/launch/icp_localize.launch">
     <arg name="odom_frame"       value="$(arg odom_icp_frame)" />
     <arg name="map_filename"     value="$(arg map_filename)" />
     <arg name="minReadingPointCount" value="$(arg minReadingPointCount)" /> 

@@ -14,7 +14,7 @@
   <group if="$(arg run_hokuyo_sensor)">
     <node pkg="hokuyo3d" type="hokuyo3d" name="hokuyo3d"
           respawn="true" respawn_delay="3">
-      <param name="interlace"    value="2"/> <!-- default value="4"-->
+      <param name="interlace"    value=""/> <!-- default value="4"-->
       <param name="frame_id"     value="hokuyo3d"/> <!-- default value="hokuyo3d"-->
       <param name="output_cycle" value="frame"/>
     </node>

@@ -8,7 +8,7 @@
   <include file="$(find pioneer_config)/launch/hokuyo_bringup.launch" />
 
   <!-- ZED mini -->
-  <include file="$(find pioneer_config)/launch/zedm_bringup.launch" /> -->
+  <!-- <include file="$(find pioneer_config)/launch/zedm_bringup.launch" /> -->
 
   <!-- Robot State Publisher  -->
 
@@ -24,9 +24,9 @@
 
   <arg name="base_frame"        default="base_link"/>
 
-  <node name="stf_$(arg basename)_to_hokuyo3d_link" pkg="tf" type="static_transform_publisher"
+  <node name="stf_$(arg base_frame)_to_hokuyo3d_link" pkg="tf" type="static_transform_publisher"
         args="0.135 0 0.297 0 0 0 $(arg base_frame) hokuyo3d_link 100" />
-  <node name="stf_$(arg basename)_to_" pkg="tf" type="static_transform_publisher"
+  <node name="stf_$(arg base_frame)_to_zedm_link" pkg="tf" type="static_transform_publisher"
         args="0.135 0 0.265 0 0 0 $(arg base_frame) zedm_link 100" />  
    
 
