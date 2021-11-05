@@ -6,13 +6,12 @@
 	<arg name="run_mapping"   default="true"/>
 	<arg name="map_filename"  default="map.vtk"/>
 
-	<arg name="minReadingPointCount" default="300" /> 
+	<arg name="minReadingPointCount" default="150" /> 
 	<arg name="minMapPointCount"     default="10000" /> <!-- quick fix to have map published each time -->
-	<arg name="minOverlap"           default="0.7" /> 
+	<arg name="minOverlap"           default="0.75" /> 
 
 	<arg name="sensor_range"         default="30"/>
-        <arg name="inputFiltersConfig"   default="$(find pioneer_config)/launch/icp_params/input_filters_outdoor_map.yaml" />
-
+	<arg name="inputFiltersConfig"   default="$(find pioneer_config)/launch/icp_params/input_filters_outdoor_map.yaml" />
 
   <node name="mapper" type="dynamic_mapper" pkg="ethzasl_icp_mapper" output="screen" >
 		<remap from="cloud_in"        to="/hokuyo3d/hokuyo_cloud2" />
@@ -23,12 +22,12 @@
 		<param name="inputFiltersConfig"     value="$(arg inputFiltersConfig)" />
 		<param name="mapPostFiltersConfig"   value="$(find pioneer_config)/launch/icp_params/mapPost_filters_outdoor.yaml" />
 		
-                <param name="odom_frame"           value="$(arg odom_frame)" />
-                <param name="map_frame"            value="/map" />
+		<param name="odom_frame"           value="$(arg odom_frame)" />
+		<param name="map_frame"            value="/map" />
 
 		<param name="useROSLogger"         value="true" />
 		<param name="inputQueueSize"       value="1" />
-		<param name="tfRefreshPeriod"      value="0.004" />
+		<param name="tfRefreshPeriod"      value="0.006" />
 		<param name="minOverlap"           value="$(arg minOverlap)" /> 
 		<param name="maxOverlapToMerge"    value="0.99" /> 
 		<param name="minReadingPointCount" value="$(arg minReadingPointCount)" /> 

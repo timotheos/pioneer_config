@@ -3,35 +3,43 @@
 
   <!-- sensor frames -->
   <arg name="run_hokuyo_sensor" default="false"/>
-  <arg name="base_frame"        default="base_link"/>
+  <arg name="base_link"         default="base_link"/>
 
   <include file="$(find pioneer_config)/launch/hokuyo_bringup.launch">
     <arg name="run_hokuyo_sensor" value="$(arg run_hokuyo_sensor)" />
   </include>
+
+  <!-- mobile robot (rosaria) -->
+  <arg name="base_footprint"       default="base_footprint"/>
+
+  <!-- run rviz -->
   <node pkg="rviz" type="rviz" name="rviz"
         args="-d $(find pioneer_config)/launch/rviz/sim-pioneer-bb.rviz" />
 
   <!-- icp mapper -->
-  <arg name="odom_icp_frame"       default="base_hokuyo3d"/>
+  <arg name="odom_icp_frame"       default="odom_pioneer"/>
   <arg name="map_filename"         default="rosbag_map_forest.vtk"/>
-  <arg name="minReadingPointCount" default="300" /> 
+  <arg name="minReadingPointCount" default="150" /> 
   <arg name="minMapPointCount"     default="10000" />
   <arg name="inputFiltersConfig"   default="$(find pioneer_config)/launch/icp_params/input_filters_outdoor_map.yaml" />
 
   <include file="$(find pioneer_config)/launch/icp_mapper.launch">
-    <arg name="odom_frame"       value="$(arg odom_icp_frame)" />
+    <arg name="odom_frame"       value="$(arg base_link)" />
     <arg name="map_filename"     value="$(arg map_filename)" />
     <arg name="minReadingPointCount" value="$(arg minReadingPointCount)" /> 
     <arg name="minMapPointCount"     value="$(arg minMapPointCount)" /> 
     <arg name="inputFiltersConfig"   value="$(arg inputFiltersConfig)" />
   </include>
 
-  <node name="stf_base_odom" pkg="tf" type="static_transform_publisher"
-        args="0 0 0 0 0 0 $(arg odom_icp_frame) $(arg base_frame) 100" />
+  <!-- <node name="stf_base_odom" pkg="tf" type="static_transform_publisher"
+        args="0 0 0 0 0 0 $(arg base_footprint) $(arg base_link) 100" /> -->
 
   <!-- rosbag data -->
   <node pkg="rosbag" type="play" name="rosbag_hokuyo_forest"
-	args="/media/nvidia/3865-30311/rosbag/2020-01-15-21-49-36.bag --clock --pause">
+        args="-r 2 /home/timothy/data/rosbag/feb\ 5/2020-02-05-16-33-43.bag --clock --pause">
+    args=" -r 1.5 /home/timothy/data/rosbag/feb\ 5/2020-02-05-16-52-51.bag --clock --pause"
+        
+
         <!--  <remap from="tf" to="tf_old" /> -->
   </node>
 </launch>

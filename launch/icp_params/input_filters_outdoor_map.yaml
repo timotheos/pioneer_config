@@ -3,12 +3,12 @@
 #- RandomSamplingDataPointsFilter:
 #    prob: 0.2
 - SurfaceNormalDataPointsFilter:
-    knn: 13
+    knn: 16
     epsilon: 1.33
     keepNormals: 1
     keepDensities: 1
 - MaxDensityDataPointsFilter:
-    maxDensity: 50.0
+    maxDensity: 32.0
 - SimpleSensorNoiseDataPointsFilter:
     sensorType: 0
 - ObservationDirectionDataPointsFilter
